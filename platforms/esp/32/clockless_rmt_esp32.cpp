@@ -2,8 +2,6 @@
 #define FASTLED_INTERNAL
 #include "FastLED.h"
 
-#include "clockless_rmt_esp32.h"
-
 //static const char *TAG = "FastLED";
 #include "esp_idf_version.h"
 

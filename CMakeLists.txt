@@ -11,11 +11,11 @@ set(srcs
     "platforms.cpp"
     "power_mgt.cpp"
     "wiring.cpp"
-#    "hal/esp32-hal-misc.c"
-#    "hal/esp32-hal-gpio.c"
-# remove the following if you want I2S instead of RMT hardware, just put a pound in front
-#    "platforms/esp/32/clockless_rmt_esp32.cpp"
 )
+
+if(CONFIG_FASTLED_METHOD_RMT)
+    list(APPEND srcs "platforms/esp/32/clockless_rmt_esp32.cpp")
+endif()
 
 # everything needs the ESP32 flag, not sure why this won't work
 # going to hack by adding the ESP32 define in the h file

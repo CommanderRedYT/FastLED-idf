@@ -123,6 +123,8 @@ extern "C" {
 
 #include "esp_log.h"
 
+#include "clockless_esp32.h"
+
 extern void spi_flash_op_lock(void);
 extern void spi_flash_op_unlock(void);
 

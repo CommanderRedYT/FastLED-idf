@@ -110,16 +110,12 @@ extern "C" {
 #include "esp32/rom/lldesc.h"
 
 #include "esp_log.h"
+
+#include "clockless_esp32.h"
     
 #ifdef __cplusplus
 }
 #endif
-
-__attribute__ ((always_inline)) inline static uint32_t __clock_cycles() {
-    uint32_t cyc;
-    __asm__ __volatile__ ("rsr %0,ccount":"=a" (cyc));
-    return cyc;
-}
 
 #define FASTLED_HAS_CLOCKLESS 1
 #define NUM_COLOR_CHANNELS 3

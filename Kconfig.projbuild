@@ -1,0 +1,13 @@
+menu "FastLED"
+
+choice FASTLED_METHOD
+    bool "Used method/implementation"
+    default FASTLED_METHOD_I2S
+
+    config FASTLED_METHOD_I2S
+        bool "I2S"
+    config FASTLED_METHOD_RMT
+        bool "RMT"
+endchoice
+
+endmenu
