@@ -121,7 +121,7 @@ void CFastLED::clearData() {
 }
 
 void CFastLED::delay(unsigned long ms) {
-	unsigned long start = millis();
+    unsigned long start = esp_timer_get_time()/1000;
         do {
 #ifndef FASTLED_ACCURATE_CLOCK
 		// make sure to allow at least one ms to pass to ensure the clock moves
@@ -131,7 +131,7 @@ void CFastLED::delay(unsigned long ms) {
 		show();
 		yield();
 	}
-	while((millis()-start) < ms);
+    while(((esp_timer_get_time()/1000)-start) < ms);
 }
 
 void CFastLED::setTemperature(const struct CRGB & temp) {
@@ -205,17 +205,17 @@ extern int noise_max;
 
 void CFastLED::countFPS(int nFrames) {
   static int br = 0;
-  static uint32_t lastframe = 0; // millis();
+  static uint32_t lastframe = 0; // esp_timer_get_time()/1000;
 
   if(br++ >= nFrames) {
-      uint32_t now = millis();
+      uint32_t now = esp_timer_get_time()/1000;
       now -= lastframe;
       if( now == 0 ) {
           now = 1; // prevent division by zero below
       }
       m_nFPS = (br * 1000) / now;
     br = 0;
-    lastframe = millis();
+    lastframe = esp_timer_get_time()/1000;
   }
 }
 

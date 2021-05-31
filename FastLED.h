@@ -5,14 +5,16 @@
 /// central include file for FastLED, defines the CFastLED class/object
 
 // BB hack
+#ifndef ESP32
 #define ESP32
+#endif
 #define FASTLED_NO_PINMAP
 
 // prefer I2S? Comment this in.
 // Not the default because haven't tried it as much, does work
 #define FASTLED_ESP32_I2S
 
-#include "esp32-hal.h"
+//#include "esp32-hal.h"
 
 #if (__GNUC__ > 4) || (__GNUC__ == 4 && __GNUC_MINOR__ >= 4)
 #define FASTLED_HAS_PRAGMA_MESSAGE

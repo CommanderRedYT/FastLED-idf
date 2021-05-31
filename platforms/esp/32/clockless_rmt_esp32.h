@@ -113,7 +113,7 @@ FASTLED_NAMESPACE_BEGIN
 extern "C" {
 #endif
 
-#include "esp32-hal.h"
+//#include "esp32-hal.h"
 #include "esp_intr_alloc.h"
 #include "driver/gpio.h"
 #include "driver/rmt.h"
@@ -129,12 +129,6 @@ extern void spi_flash_op_unlock(void);
 #ifdef __cplusplus
 }
 #endif
-
-__attribute__ ((always_inline)) inline static uint32_t __clock_cycles() {
-  uint32_t cyc;
-  __asm__ __volatile__ ("rsr %0,ccount":"=a" (cyc));
-  return cyc;
-}
 
 #define FASTLED_HAS_CLOCKLESS 1
 #define NUM_COLOR_CHANNELS 3
