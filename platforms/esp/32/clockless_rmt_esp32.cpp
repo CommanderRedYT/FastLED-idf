@@ -624,11 +624,11 @@ void IRAM_ATTR ESP32RMTController::fillNext()
 
         // -- Get the zero and one values into local variables
         // each one is a "rmt_item_t", which contains two values, which is very convenient
-        register uint32_t one_val = mOne.val;
-        register uint32_t zero_val = mZero.val;
+        FASTLED_REGISTER uint32_t one_val = mOne.val;
+        FASTLED_REGISTER uint32_t zero_val = mZero.val;
 
         // -- Use locals for speed
-        volatile register uint32_t * pItem =  mRMT_mem_ptr;
+        volatile FASTLED_REGISTER uint32_t * pItem =  mRMT_mem_ptr;
 
         // set the owner to SW --- current driver does this but its not clear it matters
         fastled_set_mem_owner(mRMT_channel, RMT_MEM_OWNER_SW);
@@ -638,7 +638,7 @@ void IRAM_ATTR ESP32RMTController::fillNext()
 
         for (int i=0; i < PULSES_PER_FILL / 32; i++) {
             if (mCur < mSize) {
-                register uint32_t thispixel = mPixelData[mCur];
+                FASTLED_REGISTER uint32_t thispixel = mPixelData[mCur];
                 for (int j = 0; j < 32; j++) {
 
                     *pItem++ = (thispixel & 0x80000000L) ? one_val : zero_val;

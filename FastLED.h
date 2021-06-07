@@ -16,6 +16,12 @@
 #define FASTLED_HAS_PRAGMA_MESSAGE
 #endif
 
+#if __cplusplus >= 201703L
+#define FASTLED_REGISTER
+#else
+#define FASTLED_REGISTER register
+#endif
+
 #if 0 // tired of these warning messages
 #define FASTLED_VERSION 3003002
 #ifndef FASTLED_INTERNAL
