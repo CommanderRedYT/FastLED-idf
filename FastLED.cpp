@@ -126,7 +126,7 @@ void CFastLED::delay(unsigned long ms) {
 #ifndef FASTLED_ACCURATE_CLOCK
 		// make sure to allow at least one ms to pass to ensure the clock moves
 		// forward
-		::delay(1);
+        vTaskDelay(1 / portTICK_PERIOD_MS);
 #endif
 		show();
 		yield();
