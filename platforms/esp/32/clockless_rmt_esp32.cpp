@@ -429,7 +429,7 @@ void ESP32RMTController::startOnChannel(int channel)
     mRMT_channel = rmt_channel_t(channel * MEM_BLOCK_NUM);
 
     // -- Assign the pin to this channel
-    rmt_set_pin(mRMT_channel, RMT_MODE_TX, mPin);
+    rmt_set_gpio(mRMT_channel, RMT_MODE_TX, mPin, false);
 
     if (FASTLED_RMT_BUILTIN_DRIVER) {
         // -- Use the built-in RMT driver to send all the data in one shot
