@@ -433,7 +433,7 @@ void ESP32RMTController::startOnChannel(int channel)
 
     if (FASTLED_RMT_BUILTIN_DRIVER) {
         // -- Use the built-in RMT driver to send all the data in one shot
-        rmt_register_tx_end_callback(doneOnRMTChannel, (void *) channel);
+        rmt_register_tx_end_callback(doneOnRMTChannel, reinterpret_cast<void *>(channel));
         rmt_write_items(mRMT_channel, mBuffer, mBufferSize, false);
     } else {
         // -- Use our custom driver to send the data incrementally

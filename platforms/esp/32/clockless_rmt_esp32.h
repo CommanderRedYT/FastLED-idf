@@ -117,7 +117,7 @@ extern "C" {
 #include "esp_intr_alloc.h"
 #include "driver/gpio.h"
 #include "driver/rmt.h"
-#include "driver/periph_ctrl.h"
+#include "esp_private/periph_ctrl.h"
 #include "freertos/semphr.h"
 #include "soc/rmt_struct.h"
 
