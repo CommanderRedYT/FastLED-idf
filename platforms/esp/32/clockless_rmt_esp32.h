@@ -113,11 +113,15 @@ FASTLED_NAMESPACE_BEGIN
 extern "C" {
 #endif
 
+#include "esp_idf_version.h"
 //#include "esp32-hal.h"
 #include "esp_intr_alloc.h"
 #include "driver/gpio.h"
 #include "driver/rmt.h"
+#ifdef OLD_IDF
+#else
 #include "esp_private/periph_ctrl.h"
+#endif
 #include "freertos/semphr.h"
 #include "soc/rmt_struct.h"
 
