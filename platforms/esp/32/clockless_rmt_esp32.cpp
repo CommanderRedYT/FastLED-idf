@@ -29,7 +29,7 @@ static intr_handle_t gRMT_intr_handle = NULL;
 
 // -- Global semaphore for the whole show process
 //    Semaphore is not given until all data has been sent
-static xSemaphoreHandle gTX_sem = NULL;
+static SemaphoreHandle_t gTX_sem = NULL;
 
 // -- Make sure we can't call show() too quickly (fastled library)
 CMinWait<55>   gWait;
