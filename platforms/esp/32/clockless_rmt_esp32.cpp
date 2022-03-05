@@ -446,7 +446,11 @@ void ESP32RMTController::startOnChannel(int channel)
 
         // -- Initialize the counters that keep track of where we are in
         //    the pixel data and the RMT buffer
-        mRMT_mem_start = & (RMTMEM.chan[mRMT_channel].data32[0]);
+        mRMT_mem_start = & (RMTMEM.chan[mRMT_channel].data32[0]
+#ifdef OLD_IDF
+                               .val
+#endif
+                           );
         mRMT_mem_ptr = mRMT_mem_start;
         mCur = 0;
         mWhichHalf = 0;
