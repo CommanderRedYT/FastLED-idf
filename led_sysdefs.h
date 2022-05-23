@@ -56,11 +56,6 @@
 #define FASTLED_USING_NAMESPACE
 #endif
 
-// Arduino.h needed for convenience functions digitalPinToPort/BitMask/portOutputRegister and the pinMode methods.
-#ifdef ARDUINO
-#include <Arduino.h>
-#endif
-
 // F_CPU is almost certainly not defined BB
 //#define CLKS_PER_US (F_CPU/1000000)
 

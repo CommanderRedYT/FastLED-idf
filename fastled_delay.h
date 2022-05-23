@@ -8,6 +8,8 @@
 
 #include "FastLED.h"
 
+#include "esp32-hal-cpu.h"
+
 ///@file fastled_delay.h
 ///Utility functions and classes for managing delaycycles
 

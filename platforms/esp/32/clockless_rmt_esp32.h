@@ -114,7 +114,6 @@ extern "C" {
 #endif
 
 #include "esp_idf_version.h"
-//#include "esp32-hal.h"
 #include "esp_intr_alloc.h"
 #include "driver/gpio.h"
 #include "driver/rmt.h"
