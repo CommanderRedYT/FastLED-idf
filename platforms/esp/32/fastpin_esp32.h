@@ -9,6 +9,8 @@
 #include "driver/gpio.h"
 #include "soc/gpio_periph.h"
 
+#include "esp32-hal-gpio.h"
+
 FASTLED_NAMESPACE_BEGIN
 
 template<uint8_t PIN, uint32_t MASK> class _ESPPIN {
