@@ -89,11 +89,9 @@
 // This is way too noisy. Is output a LARGE NUMBER of times.
 // #pragma message "NOTE: ESP32 support using I2S parallel driver. All strips must use the same chipset"
 
-FASTLED_NAMESPACE_BEGIN
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+//#ifdef __cplusplus
+//extern "C" {
+//#endif
     
 #include "esp_heap_caps.h"
 #include "esp_intr_alloc.h"
@@ -107,15 +105,23 @@ extern "C" {
 #include "soc/io_mux_reg.h"
 #include "driver/gpio.h"
 #include "driver/periph_ctrl.h"
+#include "driver/i2s.h"
 #include "esp32/rom/lldesc.h"
+#include "esp32/rom/gpio.h"
 
 #include "esp_log.h"
 
+#include "freertos/FreeRTOS.h"
+
 #include "clockless_esp32.h"
+
+#include "math.h"
     
-#ifdef __cplusplus
-}
-#endif
+//#ifdef __cplusplus
+//}
+//#endif
+
+FASTLED_NAMESPACE_BEGIN
 
 #define FASTLED_HAS_CLOCKLESS 1
 #define NUM_COLOR_CHANNELS 3
@@ -144,7 +150,7 @@ static int gNumStarted = 0;
 
 // -- Global semaphore for the whole show process
 //    Semaphore is not given until all data has been sent
-static xSemaphoreHandle gTX_sem = NULL;
+static SemaphoreHandle_t gTX_sem = NULL;
 
 // -- One-time I2S initialization
 static bool gInitialized = false;
