@@ -31,3 +31,9 @@ idf_component_register(
         esp_rom
         driver
 )
+
+target_compile_options(${COMPONENT_TARGET}
+    PUBLIC
+        -DCONFIG_RMT_SUPPRESS_DEPRECATE_WARN
+        -Wno-volatile
+)

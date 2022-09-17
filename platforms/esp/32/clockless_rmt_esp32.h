@@ -72,7 +72,7 @@
  *      FastLED CPixelLEDController template, and ESP32RMTController,
  *      which just handles driving the RMT peripheral. One benefit of
  *      this design is that ESP32RMTContoller is not a template, so
- *      its methods can be marked with the IRAM_ATTR and end up in
+ *      its methods can be marked with the and end up in
  *      IRAM memory. Another benefit is that all of the color channel
  *      processing is done up-front, in the templated class, so we
  *      can fill the RMT buffers more quickly.
@@ -240,7 +240,7 @@ public:
     ESP32RMTController(int DATA_PIN, int T1, int T2, int T3);
 
     // -- Get max cycles per fill
-    uint32_t IRAM_ATTR getMaxCyclesPerFill() const { return mMaxCyclesPerFill; }
+    uint32_t getMaxCyclesPerFill() const { return mMaxCyclesPerFill; }
 
     // -- Get or create the pixel data buffer
     uint32_t * getPixelBuffer(int size_in_bytes);
@@ -251,21 +251,21 @@ public:
 
     // -- Show this string of pixels
     //    This is the main entry point for the pixel controller
-    void IRAM_ATTR showPixels();
+    void showPixels();
 
     // -- Start up the next controller
     //    This method is static so that it can dispatch to the
     //    appropriate startOnChannel method of the given controller.
-    static void IRAM_ATTR startNext(int channel);
+    static void startNext(int channel);
 
     // -- Start this controller on the given channel
     //    This function just initiates the RMT write; it does not wait
     //    for it to finish.
-    void IRAM_ATTR startOnChannel(int channel);
+    void startOnChannel(int channel);
 
     // -- Start RMT transmission
     //    Setting this RMT flag is what actually kicks off the peripheral
-    void IRAM_ATTR tx_start();
+    void tx_start();
 
     // -- A controller is done 
     //    This function is called when a controller finishes writing
@@ -273,7 +273,7 @@ public:
     //    handler (below), or as a callback from the built-in
     //    interrupt handler. It is static because we don't know which
     //    controller is done until we look it up.
-    static void IRAM_ATTR doneOnChannel(int channel, void * arg);
+    static void doneOnChannel(int channel, void * arg);
 
         // -- A controller is done 
     //    This function is called when a controller finishes writing
@@ -281,13 +281,13 @@ public:
     //    handler (below), or as a callback from the built-in
     //    interrupt handler. It is static because we don't know which
     //    controller is done until we look it up.
-    static void IRAM_ATTR doneOnRMTChannel(rmt_channel_t rmt_channel, void * arg);
+    static void doneOnRMTChannel(rmt_channel_t rmt_channel, void * arg);
     
     // -- Custom interrupt handler
     //    This interrupt handler handles two cases: a controller is
     //    done writing its data, or a controller needs to fill the
     //    next half of the RMT buffer with data.
-    static void IRAM_ATTR interruptHandler(void *arg);
+    static void interruptHandler(void *arg);
 
     // -- Determine if there was a long pause
     //    Especially in ESP32, it seems hard to guarentee that interrupts fire
@@ -297,13 +297,13 @@ public:
     // SIDE EFFECT: Triggers stop of the channel
     //
     //    return FALSE means one needs to abort
-    bool IRAM_ATTR timingOk();
+    bool timingOk();
 
     // -- Fill RMT buffer
     //    Puts 32 bits of pixel data into the next 32 slots in the RMT memory
     //    Each data bit is represented by a 32-bit RMT item that specifies how
     //    long to hold the signal high, followed by how long to hold it low.
-    void IRAM_ATTR fillNext();
+    void fillNext();
 
     // -- Init pulse buffer
     //    Set up the buffer that will hold all of the pulse items for this

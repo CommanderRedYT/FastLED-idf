@@ -52,7 +52,7 @@ static bool gInitialized = false;
 DRAM_ATTR char g_memorybuf[MEMORYBUF_SIZE] = {0};
 DRAM_ATTR char *g_memorybuf_write = g_memorybuf;
 
-void IRAM_ATTR memorybuf_add( char *b ) {
+void memorybuf_add( char *b ) {
 
     int buflen = strlen(b);
 
@@ -65,7 +65,7 @@ void IRAM_ATTR memorybuf_add( char *b ) {
     g_memorybuf_write += buflen;
 }
 
-void IRAM_ATTR memorybuf_add( char c ) {
+void memorybuf_add( char c ) {
 
     // don't overflow
     int bufRemain = sizeof(g_memorybuf) - ( g_memorybuf_write - g_memorybuf );
@@ -75,7 +75,7 @@ void IRAM_ATTR memorybuf_add( char c ) {
     g_memorybuf_write++;
 }
 
-void IRAM_ATTR memorybuf_insert( char *b, int buflen ) {
+void memorybuf_insert( char *b, int buflen ) {
     // don't overflow
     int maxbuf = sizeof(g_memorybuf) - ( g_memorybuf_write - g_memorybuf );
     if ( maxbuf == 0 ) return;
@@ -86,7 +86,7 @@ void IRAM_ATTR memorybuf_insert( char *b, int buflen ) {
 }
 
 // often one wants a separator and an integer, do a helper
-void IRAM_ATTR memorybuf_int( int i, char sep) {
+void memorybuf_int( int i, char sep) {
 
     // am I full already?
     int maxbuf = sizeof(g_memorybuf) - ( g_memorybuf_write - g_memorybuf );
@@ -531,7 +531,7 @@ void ESP32RMTController::doneOnChannel(int channel, void * arg)
 //    This interrupt handler handles two cases: a controller is
 //    done writing its data, or a controller needs to fill the
 //    next half of the RMT buffer with data.
-void IRAM_ATTR ESP32RMTController::interruptHandler(void *arg)
+void ESP32RMTController::interruptHandler(void *arg)
 {
 
     // -- The basic structure of this code is borrowed from the
@@ -577,7 +577,7 @@ DRAM_ATTR char g_bail_str[] = "_BAIL_";
 //
 // returns true if the timing is OK, false if bad
 
-bool IRAM_ATTR ESP32RMTController::timingOk() {
+bool ESP32RMTController::timingOk() {
 
     // last time is always delayed, don't check that one
     if (mCur >= mSize)   return(true);
@@ -626,7 +626,7 @@ bool IRAM_ATTR ESP32RMTController::timingOk() {
 //    Puts 32 bits of pixel data into the next 32 slots in the RMT memory
 //    Each data bit is represented by a 32-bit RMT item that specifies how
 //    long to hold the signal high, followed by how long to hold it low.
-void IRAM_ATTR ESP32RMTController::fillNext()
+void ESP32RMTController::fillNext()
 {
 
     if (mCur < mSize) {
