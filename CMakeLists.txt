@@ -29,4 +29,5 @@ idf_component_register(
     REQUIRES
         arduino-esp32
         esp_rom
+        driver
 )
