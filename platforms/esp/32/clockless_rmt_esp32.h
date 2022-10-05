@@ -287,7 +287,7 @@ public:
     //    This interrupt handler handles two cases: a controller is
     //    done writing its data, or a controller needs to fill the
     //    next half of the RMT buffer with data.
-    static void interruptHandler(void *arg);
+    static IRAM_ATTR void interruptHandler(void *arg);
 
     // -- Determine if there was a long pause
     //    Especially in ESP32, it seems hard to guarentee that interrupts fire
